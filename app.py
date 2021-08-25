@@ -1,11 +1,9 @@
 import os
 import argparse
 import requests
-from pathlib import Path
-from dotenv import load_dotenv
+from config import env_load, API_URL
 
-env_path = Path('.') / '.env_local_development'
-load_dotenv(dotenv_path=env_path)
+env_load()
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
@@ -14,8 +12,11 @@ args = parser.parse_args()
 
 if args.title != None:
 
-    api_key = os.getenv('API_KEY')
-    url = f"http://www.omdbapi.com?apikey={api_key}&t={args.title}"
+    API_KEY = os.getenv('API_KEY')
+    url = f"{API_URL}?apikey={API_KEY}&t={args.title}"
+
+    print(url)
+
     response = requests.request("GET", url).json()
 
     if len(response['Ratings']) < 0:
@@ -24,6 +25,6 @@ if args.title != None:
                 print("Rotten Tomatoes for film title is: %s" %
                       keyVal['Value'])
     else:
-        print('No raitings avealible for title.')
+        print(f"No raitings avealible for {args.title} title.")
 else:
     print("You should pass --title (-t) argument.")

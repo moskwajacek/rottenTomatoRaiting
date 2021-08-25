@@ -15,15 +15,13 @@ if args.title != None:
     API_KEY = os.getenv('API_KEY')
     url = f"{API_URL}?apikey={API_KEY}&t={args.title}"
 
-    print(url)
-
     response = requests.request("GET", url).json()
 
-    if len(response['Ratings']) < 0:
+    if len(response['Ratings']) > 0:
         for keyVal in response['Ratings']:
             if (keyVal['Source'] == 'Rotten Tomatoes'):
-                print("Rotten Tomatoes for film title is: %s" %
-                      keyVal['Value'])
+                print(
+                    f"Rotten Tomatoes for {response['Title']} title is: {keyVal['Value']}")
     else:
         print(f"No raitings avealible for {args.title} title.")
 else:

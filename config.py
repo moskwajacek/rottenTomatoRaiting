@@ -6,5 +6,5 @@ API_URL = "http://www.omdbapi.com"
 
 
 def env_load():
-    env_path = Path('.') / '.env_local'
+    env_path = Path('.') / '.env'
     load_dotenv(dotenv_path=env_path)

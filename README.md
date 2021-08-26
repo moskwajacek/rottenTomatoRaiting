@@ -25,8 +25,8 @@
 
 7. Now run `docker ps` to see all the running containers.
 
-8. Now you can run the following command to see the files.
-    `ls`
+8. Now you can run the following command to see the files.__
+    `ls`__
     `Dockerfile   README.md   app.py   config.py   docker-compose.yml   requirements.txt`
 
 9. Access the running container `rottentomatoraiting_app_1` by running the following command:

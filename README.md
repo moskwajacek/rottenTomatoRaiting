@@ -12,11 +12,9 @@
 
 3. Replace `<YOU_API_KEY>` with your api key received from www.omdbapi.com service.
 
-4. Create Python virtual env using command:
-    `python3 -m venv tutorial-env`
+4. Create Python virtual env using command: `python3 -m venv tutorial-env`
 
-5. Install all python packages by typing:
-    `pip install -r requirements.txt`
+5. Install all python packages by typing: `pip install -r requirements.txt`
 
 ### Launching Docker conteiner
 
@@ -26,8 +24,10 @@
 7. Now run `docker ps` to see all the running containers.
 
 8. Now you can run the following command to see the files.__
-    `ls`__
-    `Dockerfile   README.md   app.py   config.py   docker-compose.yml   requirements.txt`
+    ```
+    ls  
+    Dockerfile   README.md   app.py   config.py   docker-compose.yml   requirements.txt
+    ```
 
 9. Access the running container `rottentomatoraiting_app_1` by running the following command:
     `docker exec -it rottentomatoraiting_app_1 bash`

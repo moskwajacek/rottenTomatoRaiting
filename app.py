@@ -1,6 +1,7 @@
 import os
 import argparse
 import requests
+import json
 from rich.console import Console
 from config import env_load, API_URL
 
@@ -18,16 +19,21 @@ if args.title != None:
         API_KEY = os.getenv('API_KEY')
         url = f"{API_URL}?apikey={API_KEY}&t={args.title}"
 
-        response = requests.request("GET", url).json()
-
-        if len(response['Ratings']) > 0:
-            for keyVal in response['Ratings']:
-                if (keyVal['Source'] == 'Rotten Tomatoes'):
-                    console.log(
-                        f"[red]Rotten Tomatoes for {response['Title']} title is: {keyVal['Value']}[/red]")
-        else:
-            console.log(
-                f"[red]No raitings avealible for {args.title} title.[red]")
+        try:
+            response = requests.request("GET", url).json()
+            if response.get('Ratings'):
+                for keyVal in response['Ratings']:
+                    if (keyVal['Source'] == 'Rotten Tomatoes'):
+                        console.log(
+                            f"[red]Rotten Tomatoes for {response['Title']} title is: {keyVal['Value']}[/red]")
+            elif response.get('Error'):
+                console.log(
+                    f"[red]Movie {args.title} title not found.[red]")
+            else:
+                console.log(
+                    f"[red]Raitings error for {args.title} title.[red]")
+        except requests.exceptions.HTTPError as err:
+            raise SystemExit(err)
 
     with console.status("[bold green]fatching data...") as status:
         datas = [1]
@@ -36,7 +42,6 @@ if args.title != None:
             data = datas.pop(0)
             fetch_data()
             console.log(f"[green]Feching data finished.[/green]")
-
 
 else:
     console.log("[red]You should pass --title (-t) argument.[/red]")

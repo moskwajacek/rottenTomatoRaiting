@@ -19,7 +19,9 @@
 ### Launching Docker conteiner
 
 6. Run the following command from the same directory where the docker-compose.yml file is located.
-    `docker compose up`
+    `
+    docker compose up
+    `
 
 7. Now run `docker ps` to see all the running containers.
 

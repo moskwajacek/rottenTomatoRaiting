@@ -1,5 +1,4 @@
-# rottenTomatoRaiting
-## Rotten Tomato Rating
+# Rotten Tomato Rating
 
 
 ## How to run Rotten Tomato Rating program
@@ -28,7 +27,7 @@
 
 8. Now you can run the following command to see the files.
     `ls`
-    Dockerfile   README.md   app.py   config.py   docker-compose.yml   requirements.txt`
+    `Dockerfile   README.md   app.py   config.py   docker-compose.yml   requirements.txt`
 
 9. Access the running container `rottentomatoraiting_app_1` by running the following command:
     `docker exec -it rottentomatoraiting_app_1 bash`
